@@ -1,0 +1,90 @@
+/* =======================================================
+   ESTILOS DEL GRID Y TARJETAS DE PRODUCTO (CATÁLOGO)
+   ======================================================= */
+
+/* 1. CONTENEDOR DE LA REJILLA (GRID) */
+.grid-3 { 
+    display: grid; /* Activamos CSS Grid Layout */
+    
+    /* TÉCNICA RESPONSIVA AVANZADA: 
+       'auto-fit': Crea tantas columnas como quepan en la pantalla.
+       'minmax(300px, 1fr)': Las columnas miden mínimo 300px, si hay más espacio se estiran (1fr).
+       Esto hace que no necesitemos Media Queries para que se adapte a móviles. */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    
+    gap: 2.5rem; /* Espacio uniforme entre las tarjetas (canaletas) */
+    margin-top: 2rem; 
+}
+
+/* 2. DISEÑO DE LA TARJETA (CARD UI) */
+.card {
+    background-color: var(--color-bg-card); /* Uso de variables CSS para consistencia */
+    border: 1px solid transparent; 
+    
+    /* TOQUE DE LUJO: Borde superior dorado (Color secundario de la marca) */
+    border-top: 4px solid var(--color-secondary); 
+    
+    /* SOMBRA SUAVE (Depth): Da sensación de elevación sobre el fondo */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+    
+    padding: 2rem; 
+    display: flex; 
+    flex-direction: column; /* Organiza imagen, texto y botón en columna vertical */
+    
+    /* TRANSICIÓN: Suaviza el efecto hover (animación de 0.3s) */
+    transition: var(--transition); 
+    
+    text-align: left;
+    position: relative;
+    top: 0;
+}
+
+/* 3. MICRO-INTERACCIÓN (HOVER) */
+.card:hover { 
+    /* ELEVACIÓN: Al pasar el mouse, la sombra crece y se difumina más */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12); 
+    
+    /* MOVIMIENTO: La tarjeta sube 8 píxeles para simular que flota */
+    transform: translateY(-8px); 
+    border-color: transparent; 
+}
+
+/* 4. IMAGEN DEL PRODUCTO */
+.card img { 
+    width: 100%; 
+    height: 350px; /* Altura fija para mantener alineación perfecta */
+    
+    /* OBJECT-FIT COVER: Recorta la imagen para llenar el espacio sin deformarla */
+    object-fit: cover; 
+    
+    margin-bottom: 1.5rem; 
+    border-radius: 2px; 
+}
+
+/* 5. TIPOGRAFÍA Y JERARQUÍA */
+.card h3 { 
+    font-size: 1.4rem; 
+    margin-bottom: 0.5rem; 
+    color: var(--color-primary); /* Color principal (Negro elegante) */
+}
+
+.card p { 
+    color: #666; /* Gris suave para no competir con el título */
+    font-size: 0.95rem; 
+    margin-bottom: 1rem; 
+    flex-grow: 1; /* Empuja el botón hacia abajo si el texto es corto */
+}
+
+/* 6. PRECIO DESTACADO */
+.price { 
+    display: block; 
+    font-size: 1.5rem; 
+    font-weight: 700; 
+    color: var(--color-secondary); /* Dorado para resaltar el valor */
+    margin-bottom: 1.5rem; 
+}
+
+/* 7. BOTÓN DE ACCIÓN */
+.card .btn { 
+    width: 100%; /* Botón de ancho completo para facilitar el clic (Fitts's Law) */
+}

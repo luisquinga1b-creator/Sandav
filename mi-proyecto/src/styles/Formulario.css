@@ -1,0 +1,202 @@
+/* --- ESTILOS DEL FORMULARIO DE AGENDAMIENTO --- */
+
+.appointment-section {
+    padding: 4rem 0;
+}
+
+/* 1. LA CAJA PRINCIPAL (CONTENEDOR) */
+.luxury-box {
+    display: flex; /* Esto pone la imagen al lado del formulario */
+    background-color: #ffffff; /* Fondo blanco por defecto */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    border: 1px solid rgba(216, 196, 64, 0.1);
+    min-height: 600px;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+/* 2. LADO IZQUIERDO (IMAGEN) */
+.visual-side {
+    flex: 2; /* Ocupa el 40% del ancho */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    min-height: 300px;
+    background-color: #222; /* Color de respaldo si la imagen falla */
+}
+
+/* 3. LADO DERECHO (CAMPOS) */
+.form-side {
+    flex: 3; /* Ocupa el 60% del ancho */
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: inherit; /* Hereda el color de la caja */
+}
+
+/* Títulos y Subtítulos */
+.form-side h2 {
+    text-align: left;
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    color: var(--color-primary);
+}
+
+.form-subtitle {
+    margin-bottom: 3rem;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Estructura de Filas (Dos inputs juntos) */
+.form-row {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.form-row .form-group {
+    flex: 1; /* Mitad y mitad */
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+/* --- ESTILOS DE LOS INPUTS (IMPORTANTE) --- */
+.form-side input {
+    width: 100%;
+    padding: 1.2rem 1rem 0.8rem;
+    font-size: 1.05rem;
+    border: none;
+    border-bottom: 2px solid #e0e0e0; /* Línea gris */
+    
+    /* ESTO QUITA EL FONDO BLANCO FEO DE LA FOTO: */
+    background-color: transparent !important; 
+    
+    border-radius: 4px 4px 0 0;
+    transition: all 0.3s ease;
+    color: var(--color-text-main);
+}
+
+/* Labels Flotantes */
+.floating-label label {
+    position: absolute;
+    top: 1.2rem;
+    left: 1rem;
+    font-size: 1rem;
+    color: #999;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+/* Animación del Label cuando escribes */
+.form-side input:focus ~ label,
+.form-side input.filled ~ label {
+    top: -0.8rem;
+    font-size: 0.8rem;
+    color: var(--color-secondary);
+    font-weight: 700;
+}
+
+/* Botón Dorado */
+.btn-gold-block {
+    width: 100%;
+    padding: 1.2rem;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    margin-top: 1rem;
+    box-shadow: 0 10px 20px -10px rgba(216, 196, 64, 0.5);
+}
+
+/* --- LOGICA DE COLORES Y VALIDACION (AZUL/ROJO) --- */
+/* Azul Google cuando está relleno y válido */
+.form-side input.filled:valid,
+.form-side input:focus:valid,
+input:-webkit-autofill {
+    background-color: #e8f0fe !important;
+    color: #000000 !important;
+    -webkit-text-fill-color: #000 !important;
+    border-bottom: 2px solid var(--color-secondary) !important;
+}
+
+/* Rojo Pastel cuando hay error */
+.form-side input.filled:invalid,
+.form-side input:focus:invalid {
+    background-color: #ffe6e6 !important;
+    color: #000000 !important;
+    border-bottom: 2px solid #ff4444 !important;
+    -webkit-text-fill-color: #000 !important;
+}
+
+/* Labels en error */
+.form-side input.filled:invalid ~ label,
+.form-side input:focus:invalid ~ label { color: #cc0000 !important; }
+.form-side input.filled:valid ~ label { color: #444 !important; }
+
+/* Fechas y Horas */
+.form-side input[type="date"],
+.form-side input[type="time"] {
+    color-scheme: light !important; 
+    background-color: transparent;
+}
+.form-side input[type="date"]:valid,
+.form-side input[type="time"]:valid {
+    background-color: #e8f0fe !important;
+    color: #000 !important;
+}
+
+/* --- MODO OSCURO (RESCATE DEL DISEÑO ROTO) --- */
+body.dark-theme .luxury-box {
+    background-color: #1e1e1e !important; /* Tarjeta GRIS OSCURA, no transparente */
+    border-color: #333;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+body.dark-theme .form-side h2 { color: #ffffff; }
+body.dark-theme .form-subtitle { color: #aaaaaa; }
+
+/* En modo oscuro, los inputs vacíos son blancos (texto) y transparentes (fondo) */
+body.dark-theme .form-side input {
+    color: #ffffff;
+    border-bottom-color: #444;
+}
+
+/* Mantener el azul/rojo incluso en modo oscuro */
+body.dark-theme .form-side input.filled:valid {
+    background-color: #e8f0fe !important;
+    color: #000 !important;
+}
+body.dark-theme .form-side input.filled:invalid {
+    background-color: #ffe6e6 !important;
+    color: #000 !important;
+}
+/* Estilo para los mensajes de error debajo de los inputs */
+.error-msg {
+    color: #e74c3c; /* Un rojo elegante pero visible */
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+    font-weight: 500;
+    text-align: left;
+}
+
+/* Opcional: Poner el borde del input rojo si hay error */
+input.error-input {
+    border-bottom: 2px solid #e74c3c !important;
+}
+/* --- RESPONSIVE (Móviles) --- */
+@media (max-width: 968px) {
+    .luxury-box { flex-direction: column; } /* Pone la imagen arriba del form */
+    .form-side { padding: 2.5rem 1.5rem; }
+    .form-row { flex-direction: column; gap: 0; }
+}

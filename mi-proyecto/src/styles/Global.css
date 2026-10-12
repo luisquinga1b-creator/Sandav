@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+    --color-primary: #030303;
+    --color-secondary: #d8c440;
+    --color-secondary-hover: #b8a335;
+    
+    /* CAMBIO CLAVE: Un beige elegante en lugar de blanco crema pálido */
+    --color-bg-body: #ECE8E1; 
+    
+    --color-bg-card: #FFFFFF;
+    --color-text-main: #1C1C1C;
+    --color-border: #d1cdc7;
+    --font-heading: 'Playfair Display', serif;
+    --transition: all 0.3s ease;
+    --container-width: 1200px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-heading) !important; }
+
+/* Agregamos un degradado sutil al cuerpo para que no se vea plano */
+body { 
+    background-color: var(--color-bg-body); 
+    background-image: linear-gradient(to bottom, #f7f5f2, #ece8e1); /* Degradado suave */
+    color: var(--color-text-main); 
+    line-height: 1.6; 
+}
+
+/* Layout y Utilidades */
+.container { max-width: var(--container-width); margin: 0 auto; padding: 0 2rem; }
+.section { padding: 5rem 0; }
+h2 { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; text-transform: uppercase; letter-spacing: 2px; }
+
+/* Botones Generales */
+.btn {
+    display: inline-block; padding: 1rem 2rem; background-color: var(--color-secondary); color: #fff !important;
+    text-decoration: none; font-weight: 700; text-transform: uppercase; border: none; cursor: pointer;
+    transition: var(--transition); border-radius: 2px; letter-spacing: 1px; text-align: center;
+}
+.btn:hover { background-color: var(--color-secondary-hover); transform: translateY(-2px); }
+
+/* Alertas */
+.custom-alert {
+    position: fixed; top: 20px; right: 20px; background-color: var(--color-bg-card);
+    border-left: 5px solid var(--color-secondary); padding: 1.5rem 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 9999; font-weight: 700;
+    font-size: 1.1rem; animation: slideIn 0.5s ease forwards; display: block; min-width: 300px;
+}
+@keyframes slideIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
+
+/* Modo Oscuro General (Sin cambios, sigue siendo negro elegante) */
+body.dark-theme {
+    --color-bg-body: #121212; 
+    --color-bg-card: #1e1e1e; 
+    --color-text-main: #ecf0f1;
+    --color-primary: #ffffff; 
+    --color-border: #333;
+    background-image: none; /* Quitamos el degradado claro en modo oscuro */
+}

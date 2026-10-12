@@ -1,0 +1,438 @@
+/* src/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+
+:root {
+  --gold: #D4AF37;       
+  --black: #111111;      
+  --dark-gray: #333333;
+  --light-gray: #f4f4f4;
+  --white: #ffffff;
+}
+
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Quita el subrayado azul si aparece */
+}
+
+.logo-image {
+  height: 50px; 
+  width: auto;  /* Mantiene la proporción perfecta */
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+/* Efecto Zoom elegante al pasar el mouse */
+.logo-container:hover .logo-image {
+  transform: scale(1.1); 
+  filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5)); /* Brillo dorado suave */
+}
+/* ✨ ANIMACIÓN DE ENTRADA (FADE UP) */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: var(--white);
+  color: var(--black);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* --- BARRA SUPERIOR --- */
+.top-bar {
+  background-color: var(--black);
+  color: var(--gold);
+  text-align: left;
+  padding: 5px 40px;
+  font-size: 0.75rem;        
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.top-bar p { margin: 0; }
+
+/* --- LOGO --- */
+.logo {
+  text-decoration: none;
+  color: var(--black);
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+  transition: all 0.4s ease; 
+  display: inline-block;
+}
+.logo:hover {
+  color: var(--gold);          
+  transform: scale(1.1);       
+  text-shadow: 0px 4px 10px rgba(212, 175, 55, 0.3); 
+  cursor: pointer;
+}
+
+/* =========================================
+   ✨ ARQUITECTURA DEL HERO (CARRUSEL) ✨
+   ========================================= */
+
+.hero-container {
+  position: relative; 
+  height: 85vh; 
+  width: 100%;
+  overflow: hidden; 
+  background-color: var(--black); 
+}
+
+.hero-carousel-wrapper {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 1; 
+}
+
+.hero-slide {
+    height: 85vh;
+    width: 100%;
+    outline: none !important; 
+}
+
+.slide-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center top; 
+    animation: kenBurns 20s infinite alternate linear;
+}
+
+@keyframes kenBurns {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+.hero-overlay-content {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 2; 
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--white);
+}
+
+.hero-content-box {
+    animation: fadeInUp 1.5s ease-out 0.5s backwards; 
+    padding: 20px;
+}
+
+.hero-overlay-content h1 {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
+}
+
+.hero-overlay-content p {
+  font-size: 1.4rem;
+  font-style: italic;
+  font-weight: 300;
+  margin-top: 10px;
+  opacity: 0.9;
+}
+
+/* --- BOTONES DORADOS --- */
+.btn-gold {
+  background-color: var(--gold);
+  color: var(--white);
+  padding: 15px 35px;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-top: 30px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.btn-gold:hover {
+  background-color: #b59020;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+}
+
+/* =========================================
+   ✨ SECCIÓN CATÁLOGO DE LUJO ✨
+   ========================================= */
+
+.catalogo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 50px; 
+  padding: 60px 10%;
+  background-color: #fcfcfc; 
+}
+
+.producto-card {
+  position: relative; 
+  background: var(--white);
+  border: none; 
+  border-radius: 4px; 
+  overflow: hidden; 
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); 
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+  animation: fadeInUp 0.8s ease-out backwards;
+}
+
+.producto-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%; 
+  height: 4px; 
+  background: var(--gold);
+  transition: width 0.4s ease-in-out; 
+  z-index: 10; 
+}
+
+.producto-card:hover::before {
+  width: 100%;
+}
+
+.producto-card:hover {
+  transform: translateY(-12px); 
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12); 
+}
+
+.producto-card > div:first-child {
+  height: 420px; 
+  overflow: hidden;
+  position: relative;
+}
+
+.producto-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease; 
+}
+
+.producto-card:hover img {
+  transform: scale(1.1); 
+}
+
+.producto-info {
+  padding: 25px;
+  background: var(--white);
+  position: relative;
+  z-index: 2;
+}
+
+.producto-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  margin: 0 0 10px 0;
+  color: var(--black);
+}
+
+.producto-info p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  font-weight: 300;
+}
+
+.price {
+  color: var(--gold);
+  font-family: 'Playfair Display', serif; 
+  font-size: 1.6rem;
+  font-weight: 700;
+  display: block;
+  margin: 20px 0;
+  letter-spacing: 1px;
+}
+
+.producto-card .btn-gold {
+  width: 100%;
+  margin-top: 0;
+  padding: 15px 0;
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  background-color: var(--black); 
+  color: var(--gold);
+  border: 1px solid var(--black);
+  transition: all 0.3s ease;
+  box-shadow: none; 
+}
+
+.producto-card:hover .btn-gold {
+  background-color: var(--gold); 
+  color: var(--white); 
+  border-color: var(--gold);
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* =========================================
+   ✨ PANEL DE ADMINISTRACIÓN (BUSINESS CLASS) ✨
+   ========================================= */
+
+.admin-dashboard {
+  background-color: #f8f9fa;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 20px;
+}
+
+.subtitle {
+  color: #6c757d;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* --- TARJETA DE CITA (TICKET STYLE) --- */
+.citas-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.cita-ticket {
+  display: flex;
+  background: var(--white);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+  border-left: 5px solid var(--gold); 
+}
+
+.cita-ticket:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+/* Estilo para tickets cancelados en historial */
+.ticket-cancelado {
+  border-left-color: #e74c3c !important;
+  opacity: 0.85;
+}
+
+.ticket-left {
+  background-color: #fcfcfc;
+  padding: 20px;
+  text-align: center;
+  border-right: 1px dashed #ddd;
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.status-badge {
+  font-size: 0.6rem;
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.status-active { background: #e3f9e5; color: #1b5e20; }
+.status-void { background: #fff5f5; color: #c0392b; }
+
+.cita-date .day { display: block; font-size: 2.2rem; font-weight: 700; color: var(--black); line-height: 1; }
+.cita-date .month { font-size: 0.8rem; color: #666; letter-spacing: 2px; }
+.cita-time { margin-top: 10px; font-size: 0.9rem; font-weight: bold; color: var(--gold); }
+
+.ticket-center { padding: 20px 30px; flex-grow: 1; }
+.ticket-center h3 { margin: 0; font-size: 1.4rem; color: var(--black); }
+.cedula { color: #999; font-size: 0.85rem; margin: 5px 0 15px 0; }
+
+.contact-info span { display: inline-block; margin-right: 20px; font-size: 0.9rem; color: #555; }
+.product-details { margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee; font-size: 0.95rem; }
+.talla-tag { background: #f0f0f0; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-left: 10px; }
+.cancel-timestamp { margin-top: 10px; color: #e74c3c; font-size: 0.8rem; font-style: italic; }
+
+.ticket-right { display: flex; align-items: center; justify-content: center; padding: 20px; background-color: #fafafa; }
+
+.btn-cancel {
+  background-color: transparent;
+  color: #999;
+  border: 1px solid #ddd;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+}
+
+.btn-cancel:hover {
+  background-color: #fff5f5;
+  color: #dc3545; 
+  border-color: #dc3545;
+}
+
+/* =========================================
+   ✨ SECCIÓN GUÍA DE ESTILO ✨
+   ========================================= */
+
+#guia { padding: 80px 20px; background-color: var(--white); }
+#guia h2 { text-align: center; font-size: 2.5rem; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 3px; color: var(--black); }
+.guia-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+
+.guia-item { position: relative; height: 450px; border-radius: 4px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); cursor: pointer; }
+.guia-img { width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+.guia-item:hover .guia-img { transform: scale(1.1); }
+
+.guia-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; transition: all 0.4s ease;
+}
+
+.guia-item:hover .guia-overlay { background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.2) 100%); }
+.guia-info { text-align: left; color: var(--white); z-index: 2; }
+.guia-info h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); position: relative; display: inline-block; }
+
+.guia-info h3::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 0%; height: 3px; background-color: var(--gold); transition: width 0.4s ease; }
+.guia-item:hover .guia-info h3::after { width: 100%; }
+
+.guia-info p { font-family: 'Lato', sans-serif; font-size: 1rem; line-height: 1.6; color: #e0e0e0; margin: 0; opacity: 0.9; transition: opacity 0.4s ease; }
+.guia-item:hover .guia-info p { opacity: 1; color: var(--white); }
+
+/* --- INPUTS --- */
+input, select { transition: all 0.3s ease; border: 1px solid #ddd; }
+input:focus, select:focus { outline: none; border-color: var(--gold) !important; box-shadow: 0 0 10px rgba(212, 175, 55, 0.2); transform: scale(1.01); }
+
+/* --- TABLAS (FALLBACK) --- */
+.admin-table { width: 90%; margin: 20px auto; border-collapse: collapse; box-shadow: 0 0 20px rgba(0,0,0,0.1); animation: fadeInUp 1s ease-out; }
+.admin-table th { background-color: var(--black); color: var(--gold); padding: 15px; }
+.admin-table td { padding: 15px; border-bottom: 1px solid #eee; text-align: center; }
